@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Compra - KASIMERITO</title>
+    <link rel="stylesheet" href="pagolisto.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KASIMERITO</div>
+
+        </nav>
+    </header>
+
+    <section class="confirmacion">
+        <h1>Confirmación de Compra</h1>
+        <p>Gracias por tu compra, <strong id="nombre"></strong>!</p>
+        <p>Hemos recibido tu pedido y lo estamos procesando. Te enviaremos una confirmación a tu correo electrónico: <strong id="email"></strong>.</p>
+        <p>Tu pedido será enviado a la siguiente dirección:</p>
+        <p id="direccion"></p>
+        <a href="index.html" class="boton-volver">Volver al Inicio</a>
+    </section>
+
+    <footer>
+        <p>&copy; Contactenos al : 999123432</p>
+    </footer>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let match;
+            while (match = regex.exec(queryString)) {
+                params[decodeURIComponent(match[1])] = decodeURIComponent(match[2]);
+            }
+            return params;
+        }
+
+        // Obtener los parámetros y mostrarlos en la página
+        window.onload = function() {
+            const params = getQueryParams();
+            document.getElementById('nombre').textContent = params['nombre'];
+            document.getElementById('email').textContent = params['email'];
+            document.getElementById('direccion').textContent = params['direccion'] + ', ' + params['ciudad'] + ', ' + params['estado'] + ', ' + params['codigo_postal'] + ', ' + params['pais'];
+        };
+    </script>
+</body>
+</html>
